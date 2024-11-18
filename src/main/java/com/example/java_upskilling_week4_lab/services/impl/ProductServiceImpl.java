@@ -14,18 +14,30 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
+    /**
+     * @inherit
+     */
     public Product addProduct(Product product) {
         return productRepository.save(product);
     }
 
+    /**
+     * @inherit
+     */
     public List<Product> getAllProducts() {
         return (List<Product>) productRepository.findAll();
     }
 
+    /**
+     * @inherit
+     */
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
 
+    /**
+     * @inherit
+     */
     public Product updateProduct(Long id, Product product) {
         Product oldProduct = productRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Product with ID " + id + " not found"));
@@ -36,6 +48,9 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(oldProduct);
     }
 
+    /**
+     * @inherit
+     */
     public boolean deleteProduct(Long id) {
         productRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Product with ID " + id + " not found"));
